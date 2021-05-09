@@ -1,8 +1,8 @@
 let mazeGenerationDepthFirstSearch = function(P5) {
-  let grid;
+  let maze;
   P5.setup = function() {
     P5.createCanvas(300, 300);
-    grid = new Grid(P5, 10, 10, 30);
+    maze = new Maze(P5, 10, 10, 30);
   };
   
   P5.draw = function() {
