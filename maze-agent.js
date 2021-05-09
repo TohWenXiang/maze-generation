@@ -6,5 +6,7 @@ class MazeAgent {
     }
     
     this.current = this.start;
+    
+    this.stack = [];
   }
 }
