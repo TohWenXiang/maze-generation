@@ -1,5 +1,5 @@
 class MazeAgent {
-  constructor(column, row, maze) {
+  constructor(column, row, grid) {
     this.start = {
       c: column, 
       r: row
@@ -7,7 +7,7 @@ class MazeAgent {
     
     this.current = this.start;
     
-    this.maze = maze;
+    this.grid = grid;
     
     this.stack = [];
   }
