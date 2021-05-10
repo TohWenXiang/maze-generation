@@ -4,6 +4,7 @@ class MazeRenderer {
         this.grid = maze.grid;
 
         this.unVisitedCellColor = this.P5.color(10, 25, 75);
+        this.visitedCellColor = this.P5.color(10, 75, 25);
     }
 
     draw() {
@@ -33,7 +34,7 @@ class MazeRenderer {
     drawVisitedCells() {
         this.P5.push();
         this.P5.noStroke();
-        this.P5.fill(60);
+        this.P5.fill(this.visitedCellColor);
         this.grid.cells
             .filter((cell) => {
                 return cell.isVisited;
