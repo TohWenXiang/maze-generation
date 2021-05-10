@@ -5,7 +5,26 @@ class MazeRenderer {
     }
 
     draw() {
+        this.drawVisitedCells();
         this.drawWalls();
+    }
+
+    drawVisitedCells() {
+        this.P5.push();
+        this.P5.noStroke();
+        this.P5.fill(60);
+        this.grid.cells
+            .filter((cell) => {
+                return cell.isVisited;
+            })
+            .forEach((cell) => {
+                this.P5.square(
+                    cell.column * this.grid.cellSize,
+                    cell.row * this.grid.cellSize,
+                    this.grid.cellSize
+                );
+            });
+        this.P5.pop();
     }
 
     drawWalls() {
