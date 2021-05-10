@@ -5,11 +5,12 @@ class MazeRenderer {
     }
 
     draw() {
-        this.P5.stroke(255);
         this.drawWalls();
     }
 
     drawWalls() {
+        this.P5.push();
+        this.P5.stroke(255);
         this.grid.cells.forEach((cell) => {
             let x1 = cell.column * this.grid.cellSize;
             let x2 = x1 + this.grid.cellSize;
@@ -24,5 +25,6 @@ class MazeRenderer {
                 this.P5.line(x1, y2, x2, y2);
             }
         });
+        this.P5.pop();
     }
 }
