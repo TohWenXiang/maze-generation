@@ -4,7 +4,7 @@ class Cell {
         this.column = column;
         this.row = row;
 
-        this.isVisited = true;
+        this.isVisited = false;
         this.walls = {
             right: true,
             bottom: true,

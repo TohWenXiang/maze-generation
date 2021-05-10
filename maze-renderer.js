@@ -2,11 +2,32 @@ class MazeRenderer {
     constructor(P5, maze) {
         this.P5 = P5;
         this.grid = maze.grid;
+
+        this.unVisitedCellColor = this.P5.color(10, 25, 75);
     }
 
     draw() {
+        this.drawUnvisitedCells();
         this.drawVisitedCells();
         this.drawWalls();
+    }
+
+    drawUnvisitedCells() {
+        this.P5.push();
+        this.P5.noStroke(this.unVisitedCellColor);
+        this.P5.fill(10, 25, 75);
+        this.grid.cells
+            .filter((cell) => {
+                return !cell.isVisited;
+            })
+            .forEach((cell) => {
+                this.P5.square(
+                    cell.column * this.grid.cellSize,
+                    cell.row * this.grid.cellSize,
+                    this.grid.cellSize
+                );
+            });
+        this.P5.pop();
     }
 
     drawVisitedCells() {
