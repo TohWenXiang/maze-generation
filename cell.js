@@ -10,4 +10,11 @@ class Cell {
             bottom: true,
         };
     }
+
+    get pixelPos() {
+        return this.P5.createVector(
+            cell.column * this.cellSize,
+            cell.row * this.cellSize
+        );
+    }
 }
