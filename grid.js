@@ -52,8 +52,4 @@ class Grid {
         }
         return neighbouringCells;
     }
-
-    toPixelPosition(cell) {
-        return [cell.column * this.cellSize, cell.row * this.cellSize];
-    }
 }
