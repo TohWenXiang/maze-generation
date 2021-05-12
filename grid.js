@@ -14,7 +14,12 @@ class Grid {
     fillCells() {
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.columns; c++) {
-                this.cells[r * this.columns + c] = new Cell(this.P5, c, r);
+                this.cells[r * this.columns + c] = new Cell(
+                    this.P5,
+                    c,
+                    r,
+                    this.cellSize
+                );
             }
         }
     }

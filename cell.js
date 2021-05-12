@@ -1,8 +1,9 @@
 class Cell {
-    constructor(P5, column, row) {
+    constructor(P5, column, row, cellSize) {
         this.P5 = P5;
         this.column = column;
         this.row = row;
+        this.cellSize = cellSize;
 
         this.isVisited = true;
         this.walls = {
