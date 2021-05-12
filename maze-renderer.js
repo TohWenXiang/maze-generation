@@ -28,7 +28,7 @@ class MazeRenderer {
             this.agent.current.c === cell.column &&
             this.agent.current.r === cell.row
         ) {
-            this.P5.fill(this.agentCurrentLocationColor);
+            //this.P5.fill(this.agentCurrentLocationColor);
         }
         this.P5.square(cell.pixelPos.x, cell.pixelPos.y, cell.cellSize);
         this.P5.pop();
