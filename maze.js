@@ -7,4 +7,8 @@ class Maze {
     
     this.mazeAgent = new MazeAgent(0, 0, this.grid);
   }
+  
+  update() {
+    this.mazeAgent.update();
+  }
 }

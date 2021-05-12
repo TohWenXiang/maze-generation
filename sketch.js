@@ -9,6 +9,7 @@ let mazeGenerationDepthFirstSearch = function(P5) {
   
   P5.draw = function() {
     P5.background(0);
+    maze.update();
     mazeRenderer.draw();
   };
 };
