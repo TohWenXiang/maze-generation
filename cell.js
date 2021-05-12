@@ -13,8 +13,8 @@ class Cell {
 
     get pixelPos() {
         return this.P5.createVector(
-            cell.column * this.cellSize,
-            cell.row * this.cellSize
+            this.column * this.cellSize,
+            this.row * this.cellSize
         );
     }
 }
