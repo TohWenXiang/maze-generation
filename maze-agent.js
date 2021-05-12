@@ -11,38 +11,41 @@ class MazeAgent {
     
     this.stack = [];
     
-    this.move(this.current.c, this. current.r);
+    this.grid.getCell(
+      this.current.c, 
+      this.current.r
+      ).isVisited = true
   }
   
   update() {
-    this.move(this.current.c, this.current.r - 1);
+    this.move(1, 0);
   }
   
-  move(column, row) {
-    if(this.grid.isCellIndexOutOfBounds(column, row)) {
+  move(moveColumn, moveRow) {
+    let target = {
+      c: this.current.c + moveColumn, 
+      r: this.current.r + moveRow
+    };
+    
+    if(this.grid.isCellIndexOutOfBounds(target.c, target.r)) {
       return;
     }
     
-    let targetCell = this.grid.getCell(column, row);
+    let targetCell = this.grid.getCell(target.c, target.r);
     let currentCell = this.grid.getCell(this.current.c, this.current.r);
-    let horizontalDir = column - this.current.c;
-    let verticalDir = row - this.current.r;
     
-    console.log(`${horizontalDir}, ${verticalDir}`);
-    
-    if(horizontalDir === -1) {
+    if(moveColumn === -1) {
       currentCell.walls.left = false;
-    } else if(horizontalDir === 1) {
+    } else if(moveColumn === 1) {
       targetCell.walls.left = false;
-    } else if(verticalDir === -1) {
+    } else if(moveRow === -1) {
       currentCell.walls.top = false
-    } else if(verticalDir === 1) {
+    } else if(moveRow === 1) {
       targetCell.walls.top = false;
     }
     
     targetCell.isVisited = true;
     
-    this.current.c = column;
-    this.current.r = row;
+    this.current = target;
   }
 }
