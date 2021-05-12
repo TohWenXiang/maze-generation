@@ -7,8 +7,8 @@ class Cell {
 
         this.isVisited = true;
         this.walls = {
-            right: true,
-            bottom: true,
+            top: true,
+            left: true,
         };
     }
 
