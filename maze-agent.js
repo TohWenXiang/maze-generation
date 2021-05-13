@@ -21,7 +21,11 @@ class MazeAgent {
     }
 
     update() {
-        this.move(1, 0);
+        while (this.stack.length > 0) {
+            let currentCell = this.stack.pop();
+            console.log(currentCell);
+        }
+        //this.move(1, 0);
     }
 
     move(moveColumn, moveRow) {
