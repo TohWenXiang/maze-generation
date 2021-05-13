@@ -24,6 +24,14 @@ class MazeAgent {
         while (this.stack.length > 0) {
             let currentCell = this.stack.pop();
             console.log(currentCell);
+            this.current.c = currentCell.column;
+            this.current.r = currentCell.row;
+
+            let unVisitedNeighbour = this.grid.getRandomUnVisitedNeighbour(
+                currentCell.column,
+                currentCell.row
+            );
+            console.log(unVisitedNeighbour);
         }
         //this.move(1, 0);
     }

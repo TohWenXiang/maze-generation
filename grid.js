@@ -51,10 +51,31 @@ class Grid {
                 if (c === column && r === row) {
                     continue;
                 }
-
                 neighbouringCells.push(this.getCell(c, r));
             }
         }
         return neighbouringCells;
+    }
+
+    getAdjacentNeighbours(column, row) {
+        let neighbouringCells = [];
+
+        neighbouringCells.push(this.getCell(column, row - 1));
+        neighbouringCells.push(this.getCell(column + 1, row));
+        neighbouringCells.push(this.getCell(column, row + 1));
+        neighbouringCells.push(this.getCell(column - 1, row));
+
+        return neighbouringCells;
+    }
+
+    getRandomUnVisitedNeighbour(column, row) {
+        let unVisitedNeighbours = this.getAdjacentNeighbours(
+            column,
+            row
+        ).filter((cell) => {
+            return cell?.isVisited == false;
+        });
+
+        return this.P5.random(unVisitedNeighbours);
     }
 }
