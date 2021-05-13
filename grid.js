@@ -43,7 +43,7 @@ class Grid {
         return this.cells[row * this.columns + column];
     }
 
-    getNeighbouringCells(column, row) {
+    getSurroundingNeighbours(column, row) {
         let neighbouringCells = [];
 
         for (let r = row - 1; r <= row + 1; r++) {
