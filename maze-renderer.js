@@ -7,6 +7,7 @@ class MazeRenderer {
         this.unVisitedCellColor = this.P5.color(10, 25, 75);
         this.visitedCellColor = this.P5.color(10, 75, 25);
         this.agentCurrentLocationColor = this.P5.color(75, 25, 10);
+        this.targetColor = this.P5.color(255, 255, 0);
     }
 
     draw() {
@@ -28,8 +29,15 @@ class MazeRenderer {
             this.agent.current.c === cell.column &&
             this.agent.current.r === cell.row
         ) {
-            //this.P5.fill(this.agentCurrentLocationColor);
+            this.P5.fill(this.agentCurrentLocationColor);
         }
+        if (
+            this.agent.target.c === cell.column &&
+            this.agent.target.r === cell.row
+        ) {
+            this.P5.fill(this.targetColor);
+        }
+
         this.P5.square(cell.pixelPos.x, cell.pixelPos.y, cell.cellSize);
         this.P5.pop();
     }

@@ -2,10 +2,11 @@ let mazeGenerationDepthFirstSearch = function (P5) {
     let maze;
     let mazeRenderer;
     P5.setup = function () {
-        P5.createCanvas(300, 300);
-        // P5.frameRate(5);
         maze = new Maze(P5, 20, 20, 15);
         mazeRenderer = new MazeRenderer(P5, maze);
+
+        P5.frameRate(5);
+        P5.createCanvas(maze.width, maze.height);
     };
 
     P5.draw = function () {

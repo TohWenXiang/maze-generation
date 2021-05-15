@@ -11,6 +11,14 @@ class Grid {
         this.fillCells();
     }
 
+    get width() {
+        return this.columns * this.cellSize;
+    }
+
+    get height() {
+        return this.rows * this.cellSize;
+    }
+
     fillCells() {
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.columns; c++) {

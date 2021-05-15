@@ -7,7 +7,7 @@ class MazeAgent {
             r: row,
         };
 
-        this.current = this.start;
+        this.current = this.target = this.start;
 
         this.grid = grid;
 
@@ -29,14 +29,13 @@ class MazeAgent {
         if (this.stack.length > 0) {
             // 2.1    Pop a cell from the stack and make it a current cell
             let currentCell = this.stack.pop();
+            this.current.c = currentCell.column;
+            this.current.r = currentCell.row;
 
             let unvisitedNeighbours = this.grid.getUnvisitedAdjacentNeighbours(
                 currentCell.column,
                 currentCell.row
             );
-
-            console.log(`unvisitedNeighbours: `);
-            console.log(unvisitedNeighbours);
 
             // 2.2   If the current cell has any neighbours which have not been visited
             if (unvisitedNeighbours.length > 0) {
@@ -46,9 +45,8 @@ class MazeAgent {
                 // 2.2.2    Choose one of the unvisited neighbours
                 let randomUnvisitedNeighbour =
                     this.P5.random(unvisitedNeighbours);
-
-                console.log(`randomUnvisitedNeighbour: `);
-                console.log(randomUnvisitedNeighbour);
+                this.target.c = randomUnvisitedNeighbour.column;
+                this.target.r = randomUnvisitedNeighbour.row;
 
                 // 2.2.3    Remove the wall between the current cell and the chosen cell
                 this.grid.removeWalls(currentCell, randomUnvisitedNeighbour);

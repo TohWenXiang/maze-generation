@@ -7,6 +7,14 @@ class Maze {
         this.mazeAgent = new MazeAgent(P5, 0, 0, this.grid);
     }
 
+    get width() {
+        return this.grid.width;
+    }
+
+    get height() {
+        return this.grid.height;
+    }
+
     update() {
         this.mazeAgent.update();
     }
