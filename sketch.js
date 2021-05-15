@@ -11,9 +11,9 @@ let mazeGenerationDepthFirstSearch = function (P5) {
             'canvas-container'
         );
 
-        frameRateSlider = P5.createSlider(1, 60, 10, 1).parent(
-            'settings-container'
-        );
+        frameRateSlider = P5.createSlider(1, 60, 10, 1)
+            .parent('settings-container')
+            .id('frameRateSlider');
         P5.frameRate(frameRateSlider.value());
     };
 
