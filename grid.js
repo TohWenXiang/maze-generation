@@ -68,14 +68,24 @@ class Grid {
         return neighbouringCells;
     }
 
-    getRandomUnVisitedNeighbour(column, row) {
-        let unVisitedNeighbours = this.getAdjacentNeighbours(
-            column,
-            row
-        ).filter((cell) => {
+    getUnvisitedAdjacentNeighbours(column, row) {
+        return this.getAdjacentNeighbours(column, row).filter((cell) => {
             return cell?.isVisited == false;
         });
+    }
 
-        return this.P5.random(unVisitedNeighbours);
+    removeWalls(current, target) {
+        let horizontal = target.column - current.column;
+        let vertical = target.row - current.row;
+
+        if (horizontal === -1) {
+            current.walls.left = false;
+        } else if (horizontal === 1) {
+            target.walls.left = false;
+        } else if (vertical === -1) {
+            current.walls.top = false;
+        } else if (vertical === 1) {
+            target.walls.top = false;
+        }
     }
 }

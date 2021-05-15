@@ -1,5 +1,7 @@
 class MazeAgent {
-    constructor(column, row, grid) {
+    constructor(P5, column, row, grid) {
+        this.P5 = P5;
+
         this.start = {
             c: column,
             r: row,
@@ -15,52 +17,46 @@ class MazeAgent {
     }
 
     initialize() {
+        // 1.   Choose the initial cell, mark it as visited and push it to the stack
         let startCell = this.grid.getCell(this.current.c, this.current.r);
         startCell.isVisited = true;
         this.stack.push(startCell);
     }
 
     update() {
-        while (this.stack.length > 0) {
+        // 2.   While the stack is not empty, switch to while loop for instant generation
+        //while (this.stack.length > 0) {
+        if (this.stack.length > 0) {
+            // 2.1    Pop a cell from the stack and make it a current cell
             let currentCell = this.stack.pop();
-            console.log(currentCell);
-            this.current.c = currentCell.column;
-            this.current.r = currentCell.row;
 
-            let unVisitedNeighbour = this.grid.getRandomUnVisitedNeighbour(
+            let unvisitedNeighbours = this.grid.getUnvisitedAdjacentNeighbours(
                 currentCell.column,
                 currentCell.row
             );
-            console.log(unVisitedNeighbour);
+
+            console.log(`unvisitedNeighbours: `);
+            console.log(unvisitedNeighbours);
+
+            // 2.2   If the current cell has any neighbours which have not been visited
+            if (unvisitedNeighbours.length > 0) {
+                // 2.2.1    Push the current cell to the stack
+                this.stack.push(currentCell);
+
+                // 2.2.2    Choose one of the unvisited neighbours
+                let randomUnvisitedNeighbour =
+                    this.P5.random(unvisitedNeighbours);
+
+                console.log(`randomUnvisitedNeighbour: `);
+                console.log(randomUnvisitedNeighbour);
+
+                // 2.2.3    Remove the wall between the current cell and the chosen cell
+                this.grid.removeWalls(currentCell, randomUnvisitedNeighbour);
+
+                // 2.2.4    Mark the chosen cell as visited and push it to the stack
+                randomUnvisitedNeighbour.isVisited = true;
+                this.stack.push(randomUnvisitedNeighbour);
+            }
         }
-        //this.move(1, 0);
-    }
-
-    move(moveColumn, moveRow) {
-        let target = {
-            c: this.current.c + moveColumn,
-            r: this.current.r + moveRow,
-        };
-
-        if (this.grid.isCellIndexOutOfBounds(target.c, target.r)) {
-            return;
-        }
-
-        let targetCell = this.grid.getCell(target.c, target.r);
-        let currentCell = this.grid.getCell(this.current.c, this.current.r);
-
-        if (moveColumn === -1) {
-            currentCell.walls.left = false;
-        } else if (moveColumn === 1) {
-            targetCell.walls.left = false;
-        } else if (moveRow === -1) {
-            currentCell.walls.top = false;
-        } else if (moveRow === 1) {
-            targetCell.walls.top = false;
-        }
-
-        targetCell.isVisited = true;
-
-        this.current = target;
     }
 }
