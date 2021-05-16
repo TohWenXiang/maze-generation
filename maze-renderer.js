@@ -2,7 +2,7 @@ class MazeRenderer {
     constructor(P5, maze) {
         this.P5 = P5;
         this.grid = maze.grid;
-        this.agent = maze.mazeAgent;
+        this.maze = maze;
 
         this.unVisitedCellColor = this.P5.color(10, 25, 75);
         this.visitedCellColor = this.P5.color(10, 75, 25);
@@ -13,6 +13,7 @@ class MazeRenderer {
     draw() {
         this.grid.cells.forEach((cell) => {
             this.drawCell(cell);
+            this.drawAgent();
             this.drawWalls(cell);
         });
     }
@@ -25,21 +26,35 @@ class MazeRenderer {
         } else {
             this.P5.fill(this.unVisitedCellColor);
         }
-        if (
-            this.agent.current.c === cell.column &&
-            this.agent.current.r === cell.row
-        ) {
-            this.P5.fill(this.agentCurrentLocationColor);
-        }
-        if (
-            this.agent.target.c === cell.column &&
-            this.agent.target.r === cell.row
-        ) {
-            this.P5.fill(this.targetColor);
-        }
 
         this.P5.square(cell.pixelPos.x, cell.pixelPos.y, cell.cellSize);
         this.P5.pop();
+    }
+
+    drawAgent() {
+        this.maze.mazeAgents.forEach((agent) => {
+            let currentCell = this.grid.getCell(
+                agent.current.c,
+                agent.current.r
+            );
+            let targetCell = this.grid.getCell(agent.target.c, agent.target.r);
+
+            this.P5.push();
+            this.P5.noStroke();
+            this.P5.fill(this.agentCurrentLocationColor);
+            this.P5.square(
+                currentCell.pixelPos.x,
+                currentCell.pixelPos.y,
+                currentCell.cellSize
+            );
+            this.P5.fill(this.targetColor);
+            this.P5.square(
+                targetCell.pixelPos.x,
+                targetCell.pixelPos.y,
+                targetCell.cellSize
+            );
+            this.P5.pop();
+        });
     }
 
     drawWalls(cell) {

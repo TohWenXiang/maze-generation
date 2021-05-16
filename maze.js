@@ -4,7 +4,7 @@ class Maze {
 
         this.grid = new Grid(this.P5, columns, rows, cellSize);
 
-        this.mazeAgent = new MazeAgent(P5, 0, 0, this.grid);
+        this.mazeAgents = [];
     }
 
     get width() {
@@ -16,6 +16,12 @@ class Maze {
     }
 
     update() {
-        this.mazeAgent.update();
+        this.mazeAgents.forEach((agent) => {
+            agent.update();
+        });
+    }
+
+    addAgent(agent) {
+        this.mazeAgents.push(agent);
     }
 }
