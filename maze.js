@@ -1,27 +1,29 @@
-class Maze {
-    constructor(P5, columns, rows, cellSize) {
-        this.P5 = P5;
+import Grid from './grid.js';
 
-        this.grid = new Grid(this.P5, columns, rows, cellSize);
+export default class Maze {
+  constructor(P5, columns, rows, cellSize) {
+    this.P5 = P5;
 
-        this.mazeAgents = [];
-    }
+    this.grid = new Grid(this.P5, columns, rows, cellSize);
 
-    get width() {
-        return this.grid.width;
-    }
+    this.mazeAgents = [];
+  }
 
-    get height() {
-        return this.grid.height;
-    }
+  get width() {
+    return this.grid.width;
+  }
 
-    update() {
-        this.mazeAgents.forEach((agent) => {
-            agent.update();
-        });
-    }
+  get height() {
+    return this.grid.height;
+  }
 
-    addAgent(agent) {
-        this.mazeAgents.push(agent);
-    }
+  update() {
+    this.mazeAgents.forEach((agent) => {
+      agent.update();
+    });
+  }
+
+  addAgent(agent) {
+    this.mazeAgents.push(agent);
+  }
 }
